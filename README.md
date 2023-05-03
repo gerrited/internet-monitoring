@@ -1,0 +1,1 @@
+Use [prometheus_speedtest](https://github.com/jeanralphaviles/prometheus_speedtest) to send data of your internet connection to a prometheus instance and visualize it with grafana.
