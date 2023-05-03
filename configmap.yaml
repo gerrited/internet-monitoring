@@ -1,0 +1,26 @@
+kind: ConfigMap
+metadata:
+  name: grafana-agent
+  namespace: monitoring
+apiVersion: v1
+data:
+  agent.yaml: |
+    metrics:
+      wal_directory: /var/lib/agent/wal
+      global:
+        external_labels:
+          cluster: k3s
+      configs:
+      - name: integrations
+        remote_write:
+        - url: <URL>
+          basic_auth:
+            username: <USERNAME>
+            password: <PASSWORD>
+        scrape_configs:
+        - job_name: speedtest
+          scrape_interval: 60s
+          scrape_timeout: 45s
+          metrics_path: /probe
+          static_configs:
+          - targets: ['speedtest']
